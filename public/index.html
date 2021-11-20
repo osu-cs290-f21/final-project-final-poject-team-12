@@ -7,87 +7,124 @@
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
         <link rel="stylesheet" href="./style.css">
         <script src="index.js" charset="utf-8" defer></script>
+
+
+
+        <link rel="icon" href="favicon.ico">
+
+
+
     </head>
     <body>
 
-        <header>
+        <header class="header-container">
             <div class="header-img-container">
                 <img src="logo.png" alt="Tic-Tac-Toe Logo">
             </div>
-
-            <h1 class="site-title">Tic-Tac-Toe vs The World</h1>
+            <div class="site-title-container">
+                <h1 class="site-title">Tic-Tac-Toe vs The World</h1>
+            </div>
         </header>
 
-        <main class="content">
+        <main class="contents-container">
 
-            <aside class="aside-container">
+            <section class="move-history">
+                <aside class="aside-container-X">
+                    <h2>TEAM X</h2>
+                    <div class="team-container-X">
+                        <ul>
+                            <li>Add users via javascript
+                                <ul><li>User Move History</li></ul>
+                            </li> 
+                        </ul>
+                    </div>
+                </aside>
 
-                <h2>TEAM X</h2>
-
-                <div class="team-container-X">
-                    <ul>
-                       <li>Add users via javascript</li> 
-                    </ul>
-
-                <h2>TEAM O</h2>
-
-                <div class="team-container-O">
-                    <ul>
-                       <li>Add users via javascript</li> 
-                    </ul>
-                </div>
-            </aside>
-
-            <section id="board">
-                <div class="board-space">
-                    <div class="top-left-box">
+                <aside class="aside-container-O">
+                    <h2>TEAM O</h2>
+                    <div class="team-container-O">
+                        <ul>
+                            <li>Add users via javascript
+                                <ul><li>User Move History</li></ul>
+                            </li> 
+                        </ul>
                     </div>
-                </div>
-                <div class="board-space">
-                    <div class="top-middle-box">
-                    </div>
-                </div>
-                <div class="board-space">
-                    <div class="top-right-box">
-                        <i class="far fa-circle" name="O"></i>
-                    </div>
-                </div>
-                <div class="board-space">
-                    <div class="middle-left-box">
-                    </div>
-                </div>
-                <div class="board-space">
-                    <div class="middle-middle-box">
-                        <i class="fas fa-times" name="X"></i>
-                    </div>
-                </div>
-                <div class="board-space">
-                    <div class="middle-right-box">
-                    </div>
-                </div>
-                <div class="board-space"></div>
-                    <div class="bottom-left-box">
-                    </div>
-                </div>
-                <div class="board-space">
-                    <div class="bottom-middle-box">
-                    </div>
-                </div>
-                <div class="board-space">
-                    <div class="bottom-right-box">
-                    </div>
-                </div>
-
+                </aside>
             </section>
-            <footer id="footer-container">
-                <label for="username-text" class="username-input-label">Your username</label>
-                <div class="username-input-element">
-                    <input type="text" name="username-input" id="username-input" class="username-input" placeholder="Required">
-                </div>
-                <div class="submit-button">
-                    <button type="button" id="move-submit" class="action-button">SUBMIT</button>
-                </div>
-            </footer>
+
+            <div class="submission-elements">
+
+                <section id="board-container">
+                    <table id="board">
+                        <tr id="row-1">
+                            <td class="space">1</td>
+                            <td class="space">2</td>
+                            <td class="space">3</td>
+                        </tr>
+                        <tr id="row-2">
+                            <td class="space">4</td>
+                            <td class="space">5</td>
+                            <td class="space">6</td>
+                        </tr>
+                        <tr id="row-3">
+                            <td class="space">7</td>
+                            <td class="space">8</td>
+                            <td class="space">9</td>
+                        </tr>
+                    </table>
+                </section>
+
+                <!-- <section id="board">
+                    <div class="board-space">
+                        <div class="top-left-box">
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="top-middle-box">
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="top-right-box">
+                            <i class="far fa-circle" name="O"></i>
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="middle-left-box">
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="middle-middle-box">
+                            <i class="fas fa-times" name="X"></i>
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="middle-right-box">
+                        </div>
+                    </div>
+                    <div class="board-space"></div>
+                        <div class="bottom-left-box">
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="bottom-middle-box">
+                        </div>
+                    </div>
+                    <div class="board-space">
+                        <div class="bottom-right-box">
+                        </div>
+                    </div>
+                </section> -->
+
+                <footer id="footer-container">
+                    <label for="username-text" class="username-input-label">Your username:</label>
+                    <div class="username-input-element">
+                        <input type="text" name="username-input" id="username-input" class="username-input" placeholder="Required">
+                    </div>
+                    <div class="submit-button">
+                        <button type="button" id="move-submit" class="action-button">SUBMIT</button>
+                    </div>
+                </footer>
+            </div>
         </main>
 
     </body>
