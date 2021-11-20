@@ -139,7 +139,7 @@ h2 {
     cursor: pointer;
     background-color: orange;
     color: black;
-    border: solid 1px white;
+    border: solid 1px black;
     -webkit-text-fill-color: orange;
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
