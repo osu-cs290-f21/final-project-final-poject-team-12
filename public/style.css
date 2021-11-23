@@ -27,17 +27,7 @@ body {
 .contents-container {
     display: flex;
     justify-content: space-evenly;
-    /* border: solid 1px black; */
-}
-
-.move-history {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    /* margin-left: 50px; */
-    height: auto;
-    /* border: solid 1px blue; */
-    /* width: 60vh; */
+    /* border: solid 2px white; */
 }
 
 h2 {
@@ -46,26 +36,26 @@ h2 {
     -webkit-text-stroke-color: black;
 }
 
-.aside-container-X {
+.move-history-x {
     display: flex; 
     flex-direction: column;
-    position: relative;
-    bottom: 29px;
-    border: solid 1px black;
+    border: solid 2px black;
     border-radius: 5px;
     padding: 0px 5px 0px 5px;
-
+    height: 80vh;
+    order: -1;
+    margin-top: 1px;
 }
 
-.aside-container-O {
+.move-history-o {
     display: flex;
     flex-direction: column;
-    position: relative;
-    bottom: 29px;
-    border: solid 1px black;
+    border: solid 2px black;
     border-radius: 5px;
     padding: 0px 5px 0px 5px;
-    margin-top: 5px;
+    height: 80vh;
+    order: 1;
+    margin-top: 1px;
 }
 
 .submission-elements {
@@ -74,7 +64,7 @@ h2 {
     height: 80vh;
     justify-content: center;
     /* border: solid 1px blue; */
-
+    order: 0;
 }
 
 #board-container {
