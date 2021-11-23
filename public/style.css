@@ -9,17 +9,14 @@ header {
 
 .header-img-container {
     display: inline;
-    text-align: center;
 }
 
 .header-img-container img {
     height: 150px;
-    width: auto;
 }
 
 .site-title {
     display: inline;
-    width: 50%;
 }
 
 main {
