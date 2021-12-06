@@ -103,6 +103,22 @@ h2 {
     -webkit-text-stroke-color: black;
 }
 
+#winningMessage {
+    display: none;
+}
+
+#winningMessage.show {
+    display: flex;
+}
+
+.space.x {
+    background-color: white;
+}
+
+.space.o {
+    background-color: black;
+}
+
 #footer-container {
     padding-top: 20px;
     display: flex;
