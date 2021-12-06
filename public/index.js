@@ -14,6 +14,8 @@ const winningMessageElement = document.getElementById('winningMessage')
 const winningMessageTextElement = document.getElementById('winningMessageText')
 const submitButton = document.getElementById("move-submit")
 let isPlayer_O_Turn = false
+var endGameFlag = false
+var clickedCell = null
 
 startGame()
 
@@ -23,7 +25,7 @@ function startGame() {
 		cell.classList.remove('x')
 		cell.classList.remove('o')
 		cell.removeEventListener('click', handleCellClick)
-		cell.addEventListener('click', handleCellClick, { once: true })
+		cell.addEventListener('click', handleCellClick)
 	})
 	setBoardHoverClass()
 	winningMessageElement.classList.remove('show')
@@ -58,6 +60,7 @@ function endGame(draw) {
 	} else {
 		winningMessageTextElement.innerText = '${ isPlayer_O_Turn ? "O" : "X" } Wins!'
 	}
+	endGameFlag = true
 	winningMessageElement.classList.add('show')
 }
 
@@ -81,9 +84,25 @@ function checkWin(currentClass) {
 }
 
 function handleCellClick(e) {
-	const cell = e.target
-	const currentClass = isPlayer_O_Turn ? 'x' : 'o'
-	cell.classList.add(currentClass)
+	var currClass = isPlayer_O_Turn ? 'x' : 'o' //currClass = 'x' or 'o'
+
+	if (e.target.classList.contains('x') || e.target.classList.contains('o')) {
+		//the cell is already taken, don't do anything
+	} else { //cell is not taken, mark the cell and set clickedCell
+		if (clickedCell != null) {
+			clickedCell.classList.remove(currClass)
+		} //remove currClass from our old clicked cell
+
+		clickedCell = e.target
+		clickedCell.classList.add(currClass)
+	}
+}
+
+function handleSubmitClick(e) {
+	//get username
+	//get clicked cell
+	//send data to server
+	clickedCell
 	if (checkWin(currentClass)) {
 		endGame(false)
 	} else if (isDraw()) {
@@ -99,21 +118,20 @@ function handleCellClick(e) {
 // Change clicked space to current turn !!!NEEDS CURRENT TURN
 function submitClick() {
 	var userName = document.getElementById('username-input').value.trim()
-	var tttBoard = document.getElementById('board')
-	if(!userName) {
-			alert("You must enter your Username");
+	if(!userName || clickedCell == null) {
+			alert("You must enter your Username and make a move");
 		} else {
-			
-			var req = new XMLHttpRequest()
+		var req = new XMLHttpRequest()
     	var url = '/nextTurn'
     	req.open('POST', url)
 
-    	var tttObj = {
-      	user: userName,
-      	board: tttBoard
+		var context = {
+			user: userName,
+			board: boardElement,
+			endGame: endGameFlag
     	}
 			
-    	var reqBody = JSON.stringify(tttObj)
+    	var reqBody = JSON.stringify(context)
 
     	req.addEventListener('load', function (event) {
       	if (event.target.status === 200) {
