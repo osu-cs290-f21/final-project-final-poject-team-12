@@ -1,13 +1,7 @@
 var express = require('express')
 var exphbs = require('express-handlebars');
-/*
-var hbsHelpers = exphbs.create({
-    helpers: require("./helpers/handlebars.js").helpers,
-    defaultLayout:'main',
-    extname: '.hbs'
-})
-*/
 var fs = require('fs')
+
 var gameData = require('./gameData.json')
 console.log("gameData", gameData)
 
@@ -16,13 +10,9 @@ var port = process.env.PORT || 8000;
 
 app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-
-app.engine('.hbs', hbsHelpers.engine);
-app.set('view engine', '.hbs');
-
 app.use(express.json())
 
-//app.use(express.static('public'));
+app.use(express.static('public'));
 
 //get root directory
 app.get('/', function (req, res, next) {
@@ -40,9 +30,16 @@ app.get('/', function (req, res, next) {
 //maybe path should be /nextTurn
 app.post('/', function(req, res, next) {
     console.log("req.body", req.body)
-    var user = req.body.user //input box for username
+    var users = req.body.user //input box for username
+    var board = req.body.board
     //var move get move that just happened
-    if(user && move) {
+    //change to board and users
+    if(users && board) {
+        console.log("INSIDE POST IF")
+        gameData[users].push({
+            team: users.team,
+            username: users.username
+        })
         //write data to database
         //push data
         fs.writeFile(
@@ -57,7 +54,7 @@ app.post('/', function(req, res, next) {
             }
         )
     } else {
-        res.status(400).send("Request needs user and move data")
+        res.status(400).send("Request needs user and board data")
     }
     next()
 })

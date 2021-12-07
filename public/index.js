@@ -18,13 +18,19 @@ let isPlayer_O_Turn = false
 var endGameFlag = false
 var clickedCell = null
 
+//x icon class
+var x = "<i class= 'fa fa-times'></i>"
+
+//o icon class
+var o = "<i class='far fa-circle'></i>"
+
 startGame()
 
 function startGame() {
 	isPlayer_O_Turn = false
 	cellElements.forEach(cell => { //for each ceell element
-		cell.classList.remove('x')
-		cell.classList.remove('o')
+		cell.classList.remove(x)
+		cell.classList.remove(o)
 		cell.removeEventListener('click', handleCellClick)
 		cell.addEventListener('click', handleCellClick)
 	})
@@ -37,19 +43,19 @@ function swapTurns() {
 }
 
 function setBoardHoverClass() {
-	boardElement.classList.remove('x')
-	boardElement.classList.remove('o')
+	boardElement.classList.remove(x)
+	boardElement.classList.remove(o)
 	if (isPlayer_O_Turn) {
-		boardElement.classList.add('o')
+		boardElement.classList.add(o)
 	} else {
-		boardElement.classList.add('x')
+		boardElement.classList.add(x)
 	}
 }
 
 function isDraw() {
 	var flag = true;
 	cellElements.forEach(cell => {
-		if (!cell.classList.contains('x') && !cell.classList.contains('o'))
+		if (!cell.classList.contains(x) && !cell.classList.contains(o))
 			flag = false
 	})
 	return flag
@@ -85,9 +91,9 @@ function checkWin(currentClass) {
 }
 
 function handleCellClick(e) {
-	var currClass = isPlayer_O_Turn ? 'x' : 'o' //currClass = 'x' or 'o'
+	var currClass = isPlayer_O_Turn ? x : o //currClass = x or o
 
-	if (e.target.classList.contains('x') || e.target.classList.contains('o')) {
+	if (e.target.classList.contains(x) || e.target.classList.contains(o)) {
 		//the cell is already taken, don't do anything
 	} else { //cell is not taken, mark the cell and set clickedCell
 		if (clickedCell != null) {
@@ -123,13 +129,16 @@ function submitClick() {
 			alert("You must enter your Username and make a move");
 		} else {
 		var req = new XMLHttpRequest()
-    	var url = '/' //changed from /nextTurn
+    	var url = '/nextTurn' //changed from /nextTurn
     	req.open('POST', url)
 
 		var context = {
-			user: userName,
+			user: {
+				team: currClass,
+				userName: userName
+			},
 			board: boardElement,
-			endGame: endGameFlag
+			//endGame: endGameFlag
     	}
 			
     	var reqBody = JSON.stringify(context, null, 2)
@@ -144,7 +153,7 @@ function submitClick() {
 			} else{
 				var moveIndicator = "fas fa-times"
 			}
-			//var insertMove = clickedCell
+			//add the X or O to the clicked cell
 			clickedCell.innerHTML('<i class=' + moveIndicator + '></i>')
       	} else {
         	alert("Error entering Username: ")
