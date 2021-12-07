@@ -9,7 +9,8 @@ const WINNING_COMBINATIONS = [
 	[2, 4, 6]
 ]
 const cellElements = document.querySelectorAll('#board td')
-const boardElement = document.getElementById('board')
+var boardElement = document.getElementById('board')
+console.log("boardElement", boardElement)
 const winningMessageElement = document.getElementById('winningMessage')
 const winningMessageTextElement = document.getElementById('winningMessageText')
 const submitButton = document.getElementById("move-submit")
@@ -122,7 +123,7 @@ function submitClick() {
 			alert("You must enter your Username and make a move");
 		} else {
 		var req = new XMLHttpRequest()
-    	var url = '/nextTurn'
+    	var url = '/' //changed from /nextTurn
     	req.open('POST', url)
 
 		var context = {
@@ -131,11 +132,20 @@ function submitClick() {
 			endGame: endGameFlag
     	}
 			
-    	var reqBody = JSON.stringify(context)
+    	var reqBody = JSON.stringify(context, null, 2)
+		console.log("reqBody", reqBody)
 
     	req.addEventListener('load', function (event) {
       	if (event.target.status === 200) {
         	// insert username into DOM !!!NEEDS CURRENT TURN
+			//var moveIndicator
+			if (isPlayer_O_Turn){
+				var moveIndicator = "far fa-circle"
+			} else{
+				var moveIndicator = "fas fa-times"
+			}
+			//var insertMove = clickedCell
+			clickedCell.innerHTML('<i class=' + moveIndicator + '></i>')
       	} else {
         	alert("Error entering Username: ")
       	}
@@ -143,5 +153,5 @@ function submitClick() {
 
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(reqBody)
-		}
+	}
 }

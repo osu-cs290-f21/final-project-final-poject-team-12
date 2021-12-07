@@ -1,24 +1,44 @@
 var express = require('express')
 var exphbs = require('express-handlebars');
+/*
+var hbsHelpers = exphbs.create({
+    helpers: require("./helpers/handlebars.js").helpers,
+    defaultLayout:'main',
+    extname: '.hbs'
+})
+*/
 var fs = require('fs')
+var gameData = require('./gameData.json')
+console.log("gameData", gameData)
 
 var app = express();
 var port = process.env.PORT || 8000;
 
-app.engine('handlebars', exphbs.engine({ defaultLayout: null })); //change to main when handlebars is done
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
+
+app.engine('.hbs', hbsHelpers.engine);
+app.set('view engine', '.hbs');
 
 app.use(express.json())
 
-app.use(express.static('public'));
+//app.use(express.static('public'));
 
+//get root directory
 app.get('/', function (req, res, next) {
-    res.status(200).sendFile(__dirname + '/public/index.html') //change to render(homepage) when handlebars is done
+    console.log("req.params", req.params)
+    if(gameData){
+        console.log("Root Directory")
+        res.status(200).render('gamePage', gameData)
+    } else {
+        next()
+    }
 })
 
 //next turn
-//post username and the turn to .json file
-app.post('/nextTurn', function(req, res, next) {
+//post username and the board to .json file
+//maybe path should be /nextTurn
+app.post('/', function(req, res, next) {
     console.log("req.body", req.body)
     var user = req.body.user //input box for username
     //var move get move that just happened
@@ -42,8 +62,11 @@ app.post('/nextTurn', function(req, res, next) {
     next()
 })
 
+//render 404 layout
 app.get('*', function (req, res, next) {
-    res.status(404).sendFile(__dirname, + '404.html') //change to render after handlebars is set up
+    res.status(404).render('404', {
+        path: req.url
+    })
 })
 
 app.listen(port, function () {

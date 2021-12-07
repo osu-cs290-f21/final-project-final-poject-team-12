@@ -1,0 +1,52 @@
+        <main class="contents-container">
+
+            <aside class="move-history-x">
+                <h2>TEAM X</h2>
+                <div class="team-container-X">
+                    <ul>
+                        {{#each users}}
+                            {{#if (team "x")}}
+                                <li>{{this}}</li>
+                            {{/if}}
+                        {{/each}} 
+                    </ul>
+                </div>
+            </aside>
+
+            <aside class="move-history-o">
+                <h2>TEAM O</h2>
+                <div class="team-container-O">
+                    <ul>
+                         {{#each users}}
+                            {{#if (team "o")}}
+                                <li>{{this}}</li>
+                            {{/if}}
+                         {{/each}}
+                    </ul>
+                </div>
+            </aside>
+
+            <div class="submission-elements">
+
+                <div id="winningMessage">
+                    <h1 id="winningMessageText"> Player Won </h1>
+                </div>
+
+                <section id="board-container">
+                    {{> board}}
+                </section>
+
+                <footer id="footer-container">
+                    <label for="username-text" class="username-input-label">Your username:</label>
+                    <div class="username-input-element">
+                        <input type="text" name="username-input" id="username-input" class="username-input" placeholder="Required">
+                    </div>
+                    
+                    <div class="submit-button">
+                        <button type="button" id="move-submit" class="action-button">SUBMIT</button>
+                    </div>
+                </footer>
+
+            </div>
+
+        </main>

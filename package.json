@@ -6,7 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "dev": "nodemon server.js",
+    "build": "handlebars views/partials/board.handlebars -f public/boardTemplate.js",
+    "prestart": "npm run build",
+    "predev": "npm run build"
   },
   "repository": {
     "type": "git",
