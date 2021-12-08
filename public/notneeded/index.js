@@ -9,7 +9,8 @@ const WINNING_COMBINATIONS = [
 	[2, 4, 6]
 ]
 const cellElements = document.querySelectorAll('#board td')
-const boardElement = document.getElementById('board')
+var boardElement = document.getElementById('board')
+console.log("boardElement", boardElement)
 const winningMessageElement = document.getElementById('winningMessage')
 const winningMessageTextElement = document.getElementById('winningMessageText')
 const submitButton = document.getElementById("move-submit")
@@ -18,14 +19,10 @@ var endGameFlag = false
 var clickedCell = null
 
 //x icon class
-//var x = "<i class= 'fa fa-times'></i>"
-var x = 'x'
+var x = "<i class= 'fa fa-times'></i>"
 
 //o icon class
-//var o = "<i class='far fa-circle'></i>"
-var o = 'o'
-
-var currClass = isPlayer_O_Turn ? x : o //currClass = x or o
+var o = "<i class='far fa-circle'></i>"
 
 startGame()
 
@@ -113,7 +110,7 @@ function handleSubmitClick(e) {
 	//get clicked cell
 	//send data to server
 	clickedCell
-	if (checkWin(currClass)) {
+	if (checkWin(currentClass)) {
 		endGame(false)
 	} else if (isDraw()) {
 		endGame(true)
@@ -132,34 +129,32 @@ function submitClick() {
 			alert("You must enter your Username and make a move");
 		} else {
 		var req = new XMLHttpRequest()
-    	var url = '/game' //changed from nextTurn
+    	var url = '/nextTurn' //changed from /nextTurn
     	req.open('POST', url)
 
-        
-        if (isPlayer_O_Turn) {
-            var userTeam = o
-        } else {
-            var userTeam = x
-        }
-
 		var context = {
-            board: boardElement,
-            users: {
-                team: userTeam,
-                userName: userName
-            }
-			//user: userName,
-			//board: boardElement,
+			user: {
+				team: currClass,
+				userName: userName
+			},
+			board: boardElement,
 			//endGame: endGameFlag
     	}
 			
-    	var reqBody = JSON.stringify(context)
-        console.log("reqBody", reqBody)
-        console.log("Context", context)
+    	var reqBody = JSON.stringify(context, null, 2)
+		console.log("reqBody", reqBody)
 
     	req.addEventListener('load', function (event) {
       	if (event.target.status === 200) {
         	// insert username into DOM !!!NEEDS CURRENT TURN
+			//var moveIndicator
+			if (isPlayer_O_Turn){
+				var moveIndicator = "far fa-circle"
+			} else{
+				var moveIndicator = "fas fa-times"
+			}
+			//add the X or O to the clicked cell
+			clickedCell.innerHTML('<i class=' + moveIndicator + '></i>')
       	} else {
         	alert("Error entering Username: ")
       	}
@@ -167,7 +162,5 @@ function submitClick() {
 
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(reqBody)
-		}
+	}
 }
-
-submitButton.addEventListener('click', submitClick)

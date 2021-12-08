@@ -15,11 +15,14 @@ app.use(express.json())
 app.use(express.static('public'));
 
 //get root directory
-app.get('/', function (req, res, next) {
+app.get('/game', function (req, res, next) {
     console.log("req.params", req.params)
     if(gameData){
         console.log("Root Directory")
-        res.status(200).render('gamePage', gameData)
+        res.status(200).render('gamePage', 
+        {
+            game: gameData
+        })
     } else {
         next()
     }
@@ -28,10 +31,12 @@ app.get('/', function (req, res, next) {
 //next turn
 //post username and the board to .json file
 //maybe path should be /nextTurn
-app.post('/', function(req, res, next) {
+app.post('/game', function(req, res, next) {
     console.log("req.body", req.body)
     var users = req.body.user //input box for username
+    console.log("users", users)
     var board = req.body.board
+    console.log("board", board)
     //var move get move that just happened
     //change to board and users
     if(users && board) {
