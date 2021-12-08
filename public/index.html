@@ -23,7 +23,7 @@
         </header>
 
         <main class="contents-container">
-
+            <!-- 'contents-container' must only contain 'move-history-x', 'move-history-o' and 'board-container' in order for the flex property to work correctly -->
             <aside class="move-history-x">
                 <h2>TEAM X</h2>
                 <div class="team-container-X">
@@ -46,32 +46,49 @@
                 </div>
             </aside>
 
-            <div class="submission-elements">
+            <section id="board-container">
+                <table id="board">
+                    <tr id="row-1">
+                        <td class="space" id="1" >1</td>
+                        <td class="space" id="2" >2</td>
+                        <td class="space" id="3" >3</td>
+                    </tr>
+                    <tr id="row-2">
+                        <td class="space" id="4">4</td>
+                        <td class="space" id="5">5</td>
+                        <td class="space" id="6">6</td>
+                    </tr>
+                    <tr id="row-3">
+                        <td class="space" id="7">7</td>
+                        <td class="space" id="8">8</td>
+                        <td class="space" id="9">9</td>
+                    </tr>
+                </table>
+            </section>
 
-                <div id="winningMessage">
-                    <h1 id="winningMessageText"> Player Won </h1>
+        </main>
+
+
+            <div class="submission-elements">
+                <!-- toggle the class 'hidden' in JS in order to show/hide message -->
+                <div id="message-backdrop" class="hidden"></div>
+
+                <div id="message-container" class="hidden">
+                    <div id="message-header" class="hidden">
+                        <button type="button" id="close-message" class="message-hide-button">&times;</button>
+                        <h1 id="message-text"> Winning team! Change in index.js. </h1>
+                        <!-- <ul id="winning-team-players"> -->
+                        <div id="winning-team-players">
+                            <li>Winning team players.</li>
+                        </div>
+                    </div>
+
+                    <div id="message-footer">
+                        <button type="button" id="message-cancel" class="message-hide-button action-button">Back</button>
+                    </div>
                 </div>
 
-                <section id="board-container">
-                    <table id="board">
-                        <tr id="row-1">
-                            <td class="space" id="1" >1</td>
-                            <td class="space" id="2" >2</td>
-                            <td class="space" id="3" >3</td>
-                        </tr>
-                        <tr id="row-2">
-                            <td class="space" id="4">4</td>
-                            <td class="space" id="5">5</td>
-                            <td class="space" id="6">6</td>
-                        </tr>
-                        <tr id="row-3">
-                            <td class="space" id="7">7</td>
-                            <td class="space" id="8">8</td>
-                            <td class="space" id="9">9</td>
-                        </tr>
-                    </table>
-                </section>
-
+                
                 <footer id="footer-container">
                     <label for="username-text" class="username-input-label">Your username:</label>
                     <div class="username-input-element">
@@ -82,7 +99,6 @@
                     </div>
                 </footer>
             </div>
-        </main>
 
     </body>
 </html>

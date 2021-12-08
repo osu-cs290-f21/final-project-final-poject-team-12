@@ -21,7 +21,7 @@ startGame()
 
 function startGame() {
 	isPlayer_O_Turn = false
-	cellElements.forEach(cell => { //for each ceell element
+	cellElements.forEach(cell => { //for each cell element
 		cell.classList.remove('x')
 		cell.classList.remove('o')
 		cell.removeEventListener('click', handleCellClick)
