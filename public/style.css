@@ -19,8 +19,8 @@ body {
 }
 
 .site-title {
-    color: white;
-    -webkit-text-fill-color:white;
+    color: 79142a;
+    -webkit-text-fill-color: rgb(112, 30, 44);
     -webkit-text-stroke-width: 1.5px;
     -webkit-text-stroke-color: white;
 }
@@ -28,13 +28,12 @@ body {
 .contents-container {
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
     /* border: solid 2px white; */
 }
 
 h2 {
-    -webkit-text-fill-color: black;
-    -webkit-text-stroke-width: 1.5px;
-    -webkit-text-stroke-color: black;
+    color: black;
 }
 
 .move-history-x {
@@ -43,9 +42,11 @@ h2 {
     border: solid 2px black;
     border-radius: 5px;
     padding: 0px 5px;
-    height: 60vh;
+    height: 67vh;
+    width: 45vh;
     order: -1;
-    margin-top: 1px;
+    margin: 0px 5px 0px 5px;
+    overflow: scroll;
 }
 
 .move-history-o {
@@ -54,18 +55,24 @@ h2 {
     border: solid 2px black;
     border-radius: 5px;
     padding: 0px 5px;
-    height: 60vh;
+    height: 67vh;
+    width: 45vh;
     order: 1;
-    margin-top: 1px;
+    margin: 0px 5px 0px 5px;
+    overflow: scroll;
+}
+
+.teams {
+    align-self: center;
 }
 
 .submission-elements {
     display: flex;
     flex-direction: column;
-    height: 80vh;
+    /* height: 80vh;     come back and delete this */
     justify-content: center;
     /* border: solid 1px blue; */
-    order: 0;
+    /* order: 0; */
 }
 
 #board-container {
@@ -84,8 +91,8 @@ h2 {
     border: solid 1px white;
     background-color: #79142a;
     color: #79142a ;
-    -webkit-text-fill-color: white;
-    -webkit-text-stroke-width: 1px;
+    -webkit-text-fill-color: rgb(112, 30, 44);
+    -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: white;
     font-size: 48px;
     width: 150px;
@@ -96,19 +103,28 @@ h2 {
 .space:hover {
     cursor: pointer;
     background-color: white;
-    color: black;
-    border: solid 1px white;
-    -webkit-text-fill-color: #79142a ;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    color: white;
+    border: solid 1px black;
+    -webkit-text-fill-color: white ;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(112, 30, 44);
+}
+
+.space.x {
+    background-color: white;
+}
+
+.space.o {
+    background-color: black;
 }
 
 #footer-container {
-    padding-top: 20px;
+    padding-top: 5px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding-bottom: 5px;
 }
 
 ::-webkit-input-placeholder {
@@ -122,22 +138,128 @@ h2 {
 }
 
 #move-submit {
-    background-color: black;
-    color: #79142a;
-    -webkit-text-fill-color: black;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #79142a;
+    background-color: rgb(112, 30, 44);
+    color: white;
+    -webkit-text-fill-color: rgb(112, 30, 44);
+    -webkit-text-stroke-width: 1.3px;
     margin-top: 5px;
     width: 160px;
     height: 40px;
+    margin-bottom: 5px;
 }
 
 #move-submit:hover {
     cursor: pointer;
-    background-color: #79142a;
-    color: black;
-    border: solid 1px black;
-    -webkit-text-fill-color: #79142a;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: black;
+    background-color: white;
+    color: rgb(112, 30, 44);
+    border: solid 1px rgb(112, 30, 44);
+    -webkit-text-fill-color: white;
+    -webkit-text-stroke-width: 1.5px;
+    -webkit-text-stroke-color: rgb(112, 30, 44);
+}
+
+
+    /* winning message CSS */
+#message-backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+#message-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    /* overflow: scroll; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#winning-message {
+    z-index: 1000;
+    order: 0;
+    margin: 50px 100px 10px 100px;
+    height: 60vh;
+    border: solid 1px white;
+    border-radius: 10px;
+    width: 50%;
+    padding: 0px 10px 0px 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+    /* toggle .hidden class in JS to show and hide winning message */
+.hidden {
+    display: none !important;
+}
+
+#winning-message-text {
+    order: 0;
+    position: relative;
+    top: 5px;
+    color: white;
+    text-align: center;
+}
+
+#winning-team-players {
+    order: 1;
+    text-align: center;
+    color: white;
+    font-size: 28px;
+}
+
+#close-message {
+    order: -1;
+    color:white;
+    position: absolute;
+    font-size: 26px;
+    border: none;
+    background: none;
+    margin-top: 8px;
+    cursor: pointer;    
+    align-self: flex-end;
+}
+
+#message-footer {
+    z-index: 1000;
+    order: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+#message-back {
+    cursor: pointer;
+    color: white;
+    background-color: rgb(112, 30, 44);
+    margin-bottom: 5px;
+}
+
+#message-back:hover {
+    background-color: white;
+    color:rgb(112, 30, 44);
+}
+
+#close-message:hover {
+    color: rgb(112, 30, 44);
+}
+
+    /* CSS for 404 page */
+.error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-container h1 {
+    font-size: 68px;
 }

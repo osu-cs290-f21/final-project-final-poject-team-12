@@ -1,13 +1,13 @@
 {
   "gameData": [
-    "1",
-    "2",
-    "3",
-    "4",
-    "5",
-    "6",
     "O",
-    "8",
+    "O",
+    "O",
+    "O",
+    "O",
+    "O",
+    "O",
+    "O",
     "O"
   ],
   "users": [
@@ -57,6 +57,26 @@
     },
     {
       "userName": "sqwag",
+      "team": "x"
+    },
+    {
+      "userName": "byron",
+      "team": "x"
+    },
+    {
+      "userName": "byron",
+      "team": "x"
+    },
+    {
+      "userName": "byron",
+      "team": "x"
+    },
+    {
+      "userName": "dasgdln",
+      "team": "x"
+    },
+    {
+      "userName": "dasgdln",
       "team": "x"
     }
   ]
