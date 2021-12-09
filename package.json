@@ -6,6 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
+    "prestart": "npm run build",
+    "predev": "npm run build",
+    "build": "handlebars views/gamePage.handlebars -f public/gamePageTemplate.js",
     "dev": "nodemon server.js"
   },
   "repository": {

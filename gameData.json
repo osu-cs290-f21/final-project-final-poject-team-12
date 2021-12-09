@@ -1,10 +1,12 @@
 {
-	"gameData": ['1','2','3','4','5','6','7','8','9'],
-	"users": [
-		{
-			"team": "x",
-			"userName": "xXsclassicUsername69Xx"
-		}
-	]
+  "users": [
+    "s",
+    "miles",
+    "as",
+    "asa",
+    "asas",
+    "adwq",
+    "ds"
+  ],
+  "board": "<table id=\"board\" class=\"x\">\n                    <tbody><tr id=\"row-1\">\n                        <td class=\"space o\" id=\"1\">1</td>\n                        <td class=\"space\" id=\"2\">2</td>\n                        <td class=\"space\" id=\"3\">3</td>\n                    </tr>\n                    <tr id=\"row-2\">\n                        <td class=\"space\" id=\"4\">4</td>\n                        <td class=\"space\" id=\"5\">5</td>\n                        <td class=\"space\" id=\"6\">6</td>\n                    </tr>\n                    <tr id=\"row-3\">\n                        <td class=\"space\" id=\"7\">7</td>\n                        <td class=\"space\" id=\"8\">8</td>\n                        <td class=\"space\" id=\"9\">9</td>\n                    </tr>\n                </tbody></table>"
 }
-

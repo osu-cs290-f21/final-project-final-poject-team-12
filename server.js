@@ -1,30 +1,40 @@
 var express = require('express')
+var bodyParser = require('body-parser')
 var exphbs = require('express-handlebars');
 var fs = require('fs')
 
+var gameData = require('./gameData')
+
 var app = express();
+var jsonParser = bodyParser.json()
 var port = process.env.PORT || 8000;
 
-app.engine('handlebars', exphbs.engine({ defaultLayout: null })); //change to main when handlebars is done
+
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
-
 app.use(express.json())
-
 app.use(express.static('public'));
 
-app.get('/', function (req, res, next) {
-    res.status(200).sendFile(__dirname + '/public/index.html') //change to render(homepage) when handlebars is done
+
+app.get('/game', function (req, res, next) {
+    console.log('what')
+    res.status(200).render('gamePage', {
+        board: gameData.board
+    })
 })
 
-//next turn
-//post username and the turn to .json file
-app.post('/nextTurn', function(req, res, next) {
-    console.log("req.body", req.body)
-    var user = req.body.user //input box for username
-    //var move get move that just happened
-    if(user && move) {
-        //write data to database
-        //push data
+
+app.post('/nextTurn', jsonParser, function(req, res, next) {
+    var user = req.body.user 
+    var board = req.body.board
+    var endGame = req.body.endGame
+
+    if (user && board) {
+        if(!endGame)
+            gameData.users.push(user)
+        else
+            gameData.users = []
+        gameData.board = board
         fs.writeFile(
             __dirname + '/gameData.json',
             JSON.stringify(gameData, null, 2),
@@ -39,7 +49,7 @@ app.post('/nextTurn', function(req, res, next) {
     } else {
         res.status(400).send("Request needs user and move data")
     }
-    next()
+    res.status(200)
 })
 
 app.get('*', function (req, res, next) {
