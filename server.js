@@ -34,6 +34,10 @@ app.get('/', function (req, res, next) {
     }
 })
 
+app.get('/goodJob', function (req, res, next) {
+	res.status(200).render('goodJob')
+})
+
 //next turn
 //post username and the turn to .json file
 app.post('/nextTurn', function(req, res, next) {
@@ -63,7 +67,7 @@ app.post('/nextTurn', function(req, res, next) {
 })
 
 app.get('*', function (req, res, next) {
-    res.status(404).sendFile(__dirname, + '404.html') //change to render after handlebars is set up
+    res.status(404).render('404', {path:req.url})
 })
 
 app.listen(port, function () {

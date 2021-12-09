@@ -14,7 +14,6 @@ var tttArr = []
 		tttArr[i] = tttBoard[i].textContent
 	}
 
-	
 	if(!userName) {
 			alert("You must enter your Username");
 		} else {
@@ -46,12 +45,6 @@ var tttArr = []
 		}
 }
 
-var tttBoard = document.getElementsByClassName('space')
-
-var tttArr = []
-	for(var i = 0; i < tttBoard.length; i++) {
-		tttArr[i] = tttBoard[i].textContent
-	}
 
 var space = document.getElementsByClassName('space')
 for(var i = 0; i< space.length; i++) {

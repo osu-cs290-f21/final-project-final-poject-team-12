@@ -1,14 +1,14 @@
 {
   "gameData": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
     "O",
-    "O",
-    "O",
-    "O",
-    "O",
-    "7",
     "8",
-    "9",
-    ""
+    "O"
   ],
   "users": [
     {
@@ -16,19 +16,47 @@
       "userName": "xXsclassicUsername69Xx"
     },
     {
-      "team": "o",
-      "userName": "Swagwe"
-    },
-    {
-      "userName": "userName",
+      "userName": "swag",
       "team": "x"
     },
     {
-      "userName": "userName",
+      "userName": "swag",
       "team": "x"
     },
     {
-      "userName": "heloo",
+      "userName": "asdf",
+      "team": "x"
+    },
+    {
+      "userName": "asdfasdf",
+      "team": "x"
+    },
+    {
+      "userName": "asdfasdf",
+      "team": "x"
+    },
+    {
+      "userName": "s",
+      "team": "x"
+    },
+    {
+      "userName": "s",
+      "team": "x"
+    },
+    {
+      "userName": "s",
+      "team": "x"
+    },
+    {
+      "userName": "s",
+      "team": "x"
+    },
+    {
+      "userName": "s",
+      "team": "x"
+    },
+    {
+      "userName": "sqwag",
       "team": "x"
     }
   ]
