@@ -34,12 +34,11 @@ var tttArr = []
 
 //    	req.addEventListener('load', function (event) {
 //      	if (event.target.status === 200) {
-//        	// insert username into DOM !!!NEEDS CURRENT TURN
+//        	location.href = "./goodJob";
 //      	} else {
 //        	alert("Error entering Username: ")
 //      	}
 //    	})
-
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(reqBody)
 		}

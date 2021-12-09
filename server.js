@@ -54,14 +54,14 @@ app.post('/nextTurn', function(req, res, next) {
             JSON.stringify(gameData, null, 2),
             function (err) {
                 if (!err) {
-                    res.status(200).send("Turn was stored successfully")
+                  res.status(200).send("Turn was stored successfully")
                 } else {
-                    res.status(500).send("Error storing to DB")
+                  res.status(500).send("Error storing to DB")
                 }
             }
         )
     } else {
-        res.status(400).send("Request needs user and move data")
+        res.status(400).send("Request needs user data")
     }
     next()
 })
