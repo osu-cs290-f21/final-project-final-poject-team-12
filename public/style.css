@@ -250,13 +250,17 @@ h2 {
     color: rgb(112, 30, 44);
 }
 
-    /* CSS for 404 page */
-.error-container {
+    /* CSS for 404 and good job pages */
+.page-layout {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.error-container h1 {
+.page-layout h1 {
     font-size: 68px;
+}
+
+.page-layout a:hover {
+    color:rgb(112, 30, 44);
 }
