@@ -100,18 +100,17 @@ function submitClick() {
 	//get variables we will be passing to server
 
 	var message = document.getElementById('winning-message-text')
-	message.textContent = 'Thanks for playing. Refresh to make another move'
+	message.textContent = 'Thanks for contributing to this game!'
 	//check for a winner
-	if (checkWin(check) ) {
-		endGameFlag = true
-		message.textContent = check + 's win! Refresh to play again'
-	}
 	if (countNumXO() == 9) {
 		endGameFlag = true
-		message.textContent = 'Cats Game! Refresh to play again'
-
-    }
-
+		message.textContent = 'Cats Game!'
+	}
+	if (checkWin(check) ) {
+		endGameFlag = true
+		message.textContent = check + 's win!'
+	}
+	
 	var tttArr = []
 	for(var i = 0; i < tttBoard.length; i++) {
 		tttArr[i] = tttBoard[i].textContent
