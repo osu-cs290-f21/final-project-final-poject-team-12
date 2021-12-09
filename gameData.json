@@ -1,14 +1,14 @@
 {
   "gameData": [
+    "",
+    "",
+    "",
+    "",
     "O",
-    "O",
-    "O",
-    "O",
-    "O",
-    "O",
-    "O",
-    "O",
-    "O"
+    "",
+    "",
+    "",
+    ""
   ],
   "users": [
     {
@@ -17,158 +17,10 @@
     },
     {
       "userName": "swag",
-      "team": "x"
+      "team": "o"
     },
     {
-      "userName": "swag",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "s",
-      "team": "x"
-    },
-    {
-      "userName": "s",
-      "team": "x"
-    },
-    {
-      "userName": "s",
-      "team": "x"
-    },
-    {
-      "userName": "s",
-      "team": "x"
-    },
-    {
-      "userName": "s",
-      "team": "x"
-    },
-    {
-      "userName": "sqwag",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asddf",
-      "team": "x"
-    },
-    {
-      "userName": "asddf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdasdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfas",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdf",
-      "team": "x"
-    },
-    {
-      "userName": "asdfsa",
-      "team": "x"
-    },
-    {
-      "userName": "asdfsa",
-      "team": "x"
-    },
-    {
-      "userName": "asdfas",
-      "team": "x"
-    },
-    {
-      "userName": "asdfadf",
+      "userName": "Jimmy",
       "team": "x"
     }
   ]

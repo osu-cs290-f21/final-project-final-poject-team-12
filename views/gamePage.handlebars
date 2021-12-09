@@ -35,24 +35,6 @@
 
         <div class="submission-elements">
 
-                {{!-- toggle the class 'hidden' in JS in order to show/hide message --}}
-            <div id="message-backdrop" class="hidden"></div>
-
-            <div id="message-container" class="hidden">
-                <div id="winning-message">
-                    <button type="button" id="close-message" class="message-hide-button">&times;</button>
-                    <h1 id="winning-message-text"> Winning Team! Change in JS </h1>
-                    <div id="winning-team-players">
-                        <li>Winning team players.</li>
-                    </div>
-                </div>
-
-                <div id="message-footer" class="hidden">
-                    <button type="button" id="message-back" class="message-hide-button action-button">Back</button>
-                </div>
-            </div>
-
-
             <footer id="footer-container">
                 <label for="username-text" class="username-input-label">Your username:</label>
                 <div class="username-input-element">
@@ -65,4 +47,21 @@
             </footer>
 
         </div>
+
+        {{!-- toggle the class 'hidden' in JS in order to show/hide message --}}
+        <div id="message-backdrop" class="hidden"></div>
+
+            <div id="message-container" class="hidden">
+                <div id="winning-message">
+                    <button type="button" id="close-message" class="message-hide-button">&times;</button>
+                    <h1 id="winning-message-text"> Winning Team! Change in JS </h1>
+                    <div id="winning-team-players">
+                        <li>Winning team players.</li>
+                    </div>
+                </div>
+
+                <div id="message-footer">
+                    <button type="button" id="message-back" class="message-hide-button" class="action-button">Back</button>
+                </div>
+            </div>
     </main>

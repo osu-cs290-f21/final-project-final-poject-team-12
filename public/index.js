@@ -1,3 +1,21 @@
+function showMessage() {
+
+	var message = document.getElementById('message-container');
+	var messageBackdrop = document.getElementById('message-backdrop');
+  
+	message.classList.remove('hidden');
+	messageBackdrop.classList.remove('hidden');
+  
+  }
+
+function hideMessage() {
+	var message = document.getElementById('message-container')
+	var messageBackdrop = document.getElementById('message-backdrop')
+
+	message.classList.add('hidden')
+	messageBackdrop.classList.add('hidden')
+}
+
 function spaceClick(event){
 	event.currentTarget.textContent = "O"
 }
@@ -41,7 +59,9 @@ var tttArr = []
 //    	})
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(reqBody)
-		}
+	}
+	//check if win
+	//if win true showMessage
 }
 
 
@@ -50,5 +70,12 @@ for(var i = 0; i< space.length; i++) {
 	space[i].addEventListener('click', spaceClick)
 }
 
-var submit = document.getElementById("move-submit")
-submit.addEventListener('click', submitClick)
+window.addEventListener('DOMContentLoaded', function () {
+	var submit = document.getElementById("move-submit")
+	submit.addEventListener('click', submitClick)
+
+	var messageHideButtons = document.getElementsByClassName('message-hide-button')
+	for (var i = 0; i < messageHideButtons.length; i++) {
+		messageHideButtons[i].addEventListener('click', hideMessage)
+	}
+})
