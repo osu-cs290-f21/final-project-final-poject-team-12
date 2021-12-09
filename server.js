@@ -42,12 +42,19 @@ app.get('/goodJob', function (req, res, next) {
 //post username and the turn to .json file
 app.post('/nextTurn', function(req, res, next) {
     var user = req.body.user
-		var board = req.body.gameData
+	var board = req.body.gameData
     //var move get move that just happened
     if(user) {
         //write data to database
-			gameData.gameData = board
-			gameData.users.push(user)
+        
+        if (req.body.endGame) {
+            gameData.users = []
+            gameData.gameData = ["", "", "", "", "", "", "", "", ""]
+        }
+        else {
+            gameData.users.push(user)
+            gameData.gameData = board
+        }
         //push data
         fs.writeFile(
             __dirname + '/gameData.json',
@@ -63,7 +70,7 @@ app.post('/nextTurn', function(req, res, next) {
     } else {
         res.status(400).send("Request needs user data")
     }
-    next()
+    res.status(200)
 })
 
 app.get('*', function (req, res, next) {

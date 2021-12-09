@@ -1,3 +1,74 @@
+var spaces = document.getElementsByClassName('space')
+var prevCell = null
+var moveFlag = false
+
+var endGameFlag = false
+
+for (var i = 0; i < spaces.length; i++) {
+	spaces[i].removeEventListener('click', spaceClick)
+	spaces[i].addEventListener('click', spaceClick)
+}
+
+function Player_O_Turn() {
+	if (countNumXO() % 2 == 1) {
+		return true;
+	} else
+		return false
+}
+
+function spaceClick(event) {
+	if (event.target.textContent.indexOf('X') != -1 || event.target.textContent.indexOf('O') != -1) {
+		//the cell is taken, don't do anything
+	} else {
+		if (prevCell != null)
+			prevCell.textContent = ''
+		var currClass = 'X'
+		if (Player_O_Turn())
+			currClass = 'O'
+		event.target.textContent = currClass
+		prevCell = event.target
+		moveFlag = true
+	}
+
+}
+
+function countNumXO() {
+	var count = 0
+	for (var i = 0; i < spaces.length; i++) {
+		if (spaces[i].textContent.indexOf('X') != -1 || spaces[i].textContent.indexOf('O') != -1)
+			count++
+	}
+	return count
+}
+
+const WINNING_COMBINATIONS = [
+	[0, 1, 2],
+	[3, 4, 5],
+	[6, 7, 8],
+	[0, 3, 6],
+	[1, 4, 7],
+	[2, 5, 8],
+	[0, 4, 8],
+	[2, 4, 6]
+]
+function checkWin(currentClass) {
+	spaces = document.getElementsByClassName('space')
+	var winFlag = false
+	var JSsucksFlag = false
+	WINNING_COMBINATIONS.forEach(combo => {
+		winFlag = true
+		combo.forEach(index => {
+			if (spaces[parseInt(index)].textContent.indexOf(currentClass) == -1) {
+				winFlag = false
+			}
+		})
+		if (winFlag == true) {
+			JSsucksFlag = true
+		}
+	})
+	return JSsucksFlag
+}
+
 function showMessage() {
 
 	var message = document.getElementById('message-container');
@@ -16,18 +87,32 @@ function hideMessage() {
 	messageBackdrop.classList.add('hidden')
 }
 
-function spaceClick(event){
-	event.currentTarget.textContent = "O"
-}
 
 function submitClick() {
 	var userName = document.getElementById('username-input').value.trim()
-	
 	var tttBoard = document.getElementsByClassName('space')
-	
-	var team = 'x'// IMPLAMENT ME!!!!
+	var team = 'X'
+	var check = 'O'
+	if (Player_O_Turn()) {
+		team = 'O'
+		check = 'X'
+	}
+	//get variables we will be passing to server
 
-var tttArr = []
+	var message = document.getElementById('winning-message-text')
+	message.textContent = 'Thanks for playing. Refresh to make another move'
+	//check for a winner
+	if (checkWin(check) ) {
+		endGameFlag = true
+		message.textContent = check + 's win! Refresh to play again'
+	}
+	if (countNumXO() == 9) {
+		endGameFlag = true
+		message.textContent = 'Cats Game! Refresh to play again'
+
+    }
+
+	var tttArr = []
 	for(var i = 0; i < tttBoard.length; i++) {
 		tttArr[i] = tttBoard[i].textContent
 	}
@@ -36,16 +121,17 @@ var tttArr = []
 			alert("You must enter your Username");
 		} else {
 			
-			var req = new XMLHttpRequest()
+		var req = new XMLHttpRequest()
     	var url = '/nextTurn'
     	req.open('POST', url)
 
     	var tttObj = {
-				gameData: tttArr,
-      	user: {
-					userName: userName,
-					team: team
-				},
+			gameData: tttArr,
+			endGame: endGameFlag,
+      		user: {
+				userName: userName,
+				team: team
+			}
     	}
 			
     	var reqBody = JSON.stringify(tttObj)
@@ -57,25 +143,15 @@ var tttArr = []
 //        	alert("Error entering Username: ")
 //      	}
 //    	})
-    req.setRequestHeader('Content-Type', 'application/json')
-    req.send(reqBody)
+		req.setRequestHeader('Content-Type', 'application/json')
+		req.send(reqBody)
+
+		//show thanks4playing/winner/draw message
+		showMessage()
 	}
 	//check if win
 	//if win true showMessage
 }
+var submit = document.getElementById("move-submit")
+submit.addEventListener('click', submitClick)
 
-
-var space = document.getElementsByClassName('space')
-for(var i = 0; i< space.length; i++) {
-	space[i].addEventListener('click', spaceClick)
-}
-
-window.addEventListener('DOMContentLoaded', function () {
-	var submit = document.getElementById("move-submit")
-	submit.addEventListener('click', submitClick)
-
-	var messageHideButtons = document.getElementsByClassName('message-hide-button')
-	for (var i = 0; i < messageHideButtons.length; i++) {
-		messageHideButtons[i].addEventListener('click', hideMessage)
-	}
-})

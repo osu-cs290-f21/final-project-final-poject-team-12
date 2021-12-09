@@ -1,27 +1,28 @@
 {
   "gameData": [
-    "",
-    "",
-    "",
-    "",
+    "X",
     "O",
+    "X",
+    "",
+    "",
     "",
     "",
     "",
     ""
   ],
+  "endGame": false,
   "users": [
     {
-      "team": "x",
-      "userName": "xXsclassicUsername69Xx"
+      "userName": "we",
+      "team": "O"
     },
     {
-      "userName": "swag",
-      "team": "o"
+      "userName": "wewefwefw",
+      "team": "X"
     },
     {
-      "userName": "Jimmy",
-      "team": "x"
+      "userName": "poop",
+      "team": "O"
     }
   ]
 }

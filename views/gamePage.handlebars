@@ -6,7 +6,7 @@
             <div class="team-container-X">
                 <ul>
                     {{#each game.users}}
-                        {{#ifCond team "x"}}
+                        {{#ifCond team "O"}}
                             <li> {{userName}} </li>
                         {{/ifCond}}
                     {{/each}} 
@@ -19,7 +19,7 @@
             <div class="team-container-O">
                 <ul>
                         {{#each game.users}}
-                        {{#ifCond team "o"}}
+                        {{#ifCond team "X"}}
                             <li>{{userName}}</li>
                         {{/ifCond}}
                         {{/each}}
