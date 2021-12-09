@@ -18,7 +18,7 @@
                 <div class="team-container-O">
                     <ul>
                          {{#each users}}
-                            {{#if (team.team "o")}}
+                            {{#if (this.team "o")}}
                                 <li>{{this.userName}}</li>
                             {{/if}}
                          {{/each}}
