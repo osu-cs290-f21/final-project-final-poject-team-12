@@ -147,6 +147,9 @@ function submitClick() {
 		req.send(reqBody)
 
 		//show thanks4playing/winner/draw message
+		//clear username input
+		var clearInput = document.getElementById('username-input')
+		clearInput.value = "";
 		showMessage()
 	}
 	//check if win

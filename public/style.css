@@ -178,6 +178,7 @@ h2 {
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: #79142a;
 }
 
 #winning-message {
@@ -205,40 +206,6 @@ h2 {
     top: 10px;
     color: white;
     text-align: center;
-}
-
-#winning-team-players {
-    order: 1;
-    text-align: center;
-    color: white;
-    font-size: 28px;
-}
-
-#close-message {
-    order: -1;
-    color:white;
-    position: absolute;
-    font-size: 26px;
-    border: none;
-    background: none;
-    margin-top: 8px;
-    cursor: pointer;    
-    align-self: flex-end;
-}
-
-#message-footer {
-    order: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-#message-back {
-    cursor: pointer;
-    color: white;
-    background-color: rgb(112, 30, 44);
-    margin-bottom: 5px;
 }
 
 #message-back:hover {

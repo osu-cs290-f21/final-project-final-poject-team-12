@@ -1,8 +1,8 @@
 {
   "gameData": [
-    "X",
-    "O",
-    "X",
+    "",
+    "",
+    "",
     "",
     "",
     "",
@@ -11,18 +11,5 @@
     ""
   ],
   "endGame": false,
-  "users": [
-    {
-      "userName": "we",
-      "team": "O"
-    },
-    {
-      "userName": "wewefwefw",
-      "team": "X"
-    },
-    {
-      "userName": "poop",
-      "team": "O"
-    }
-  ]
+  "users": []
 }
