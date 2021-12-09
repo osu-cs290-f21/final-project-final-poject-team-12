@@ -4,10 +4,10 @@
                 <h2>TEAM X</h2>
                 <div class="team-container-X">
                     <ul>
-                        {{#each users}}
-                            {{#if (team "x")}}
-                                <li>{{this.userName}}</li>
-                            {{/if}}
+                        {{#each game.users}}
+                            {{#ifCond team "x"}}
+                                <li> {{userName}} </li>
+                            {{/ifCond}}
                         {{/each}} 
                     </ul>
                 </div>
@@ -17,10 +17,10 @@
                 <h2>TEAM O</h2>
                 <div class="team-container-O">
                     <ul>
-                         {{#each users}}
-                            {{#if (team "o")}}
-                                <li>{{this}}</li>
-                            {{/if}}
+                         {{#each game.users}}
+                            {{#ifCond team "o"}}
+                                <li>{{userName}}</li>
+                            {{/ifCond}}
                          {{/each}}
                     </ul>
                 </div>
@@ -33,7 +33,7 @@
                 </div>
 
                 <section id="board-container">
-                    {{> board}}
+                    {{> board game.gameData}}
                 </section>
 
                 <footer id="footer-container">

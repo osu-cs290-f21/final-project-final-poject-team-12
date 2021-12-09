@@ -1,10 +1,35 @@
 {
-	"board": "<table id='board'><tr id='row-1'><td class='space' id='1' ></td><td class='space' id='2' ></td><td class='space' id='3' ></td></tr><tr id='row-2'><td class='space' id='4'></td><td class='space' id='5'></td><td class='space' id='6'></td></tr><tr id='row-3'><td class='space' id='7'></td><td class='space' id='8'></td><td class='space' id='9'></td></tr></table>",
-	"users": [
-		{
-			"team": "x",
-			"userName": "xXsclassicUsername69Xx"
-		}
-	]
+  "gameData": [
+    "O",
+    "O",
+    "O",
+    "O",
+    "O",
+    "7",
+    "8",
+    "9",
+    ""
+  ],
+  "users": [
+    {
+      "team": "x",
+      "userName": "xXsclassicUsername69Xx"
+    },
+    {
+      "team": "o",
+      "userName": "Swagwe"
+    },
+    {
+      "userName": "userName",
+      "team": "x"
+    },
+    {
+      "userName": "userName",
+      "team": "x"
+    },
+    {
+      "userName": "heloo",
+      "team": "x"
+    }
+  ]
 }
-

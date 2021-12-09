@@ -3,22 +3,28 @@ var exphbs = require('express-handlebars');
 var fs = require('fs')
 
 var gameData = require('./gameData.json')
-console.log("gameData", gameData)
 
 var app = express();
 var port = process.env.PORT || 8000;
 
-app.engine('handlebars', exphbs.engine({ defaultLayout: 'main' }));
+app.engine('handlebars', exphbs.engine({ defaultLayout: 'main'}))
 app.set('view engine', 'handlebars');
+
+var hbs = exphbs.create({});
+
+hbs.handlebars.registerHelper('ifCond', function(v1, v2, options) {
+  if(v1 === v2) {
+    return options.fn(this);
+  }
+  return options.inverse(this);
+});
+
 app.use(express.json())
 
 app.use(express.static('public'));
 
-//get root directory
-app.get('/game', function (req, res, next) {
-    console.log("req.params", req.params)
+app.get('/', function (req, res, next) {
     if(gameData){
-        console.log("Root Directory")
         res.status(200).render('gamePage', 
         {
             game: gameData
@@ -29,23 +35,15 @@ app.get('/game', function (req, res, next) {
 })
 
 //next turn
-//post username and the board to .json file
-//maybe path should be /nextTurn
-app.post('/game', function(req, res, next) {
-    console.log("req.body", req.body)
-    var users = req.body.user //input box for username
-    console.log("users", users)
-    var board = req.body.board
-    console.log("board", board)
+//post username and the turn to .json file
+app.post('/nextTurn', function(req, res, next) {
+    var user = req.body.user
+		var board = req.body.gameData
     //var move get move that just happened
-    //change to board and users
-    if(users && board) {
-        console.log("INSIDE POST IF")
-        gameData[users].push({
-            team: users.team,
-            username: users.username
-        })
+    if(user) {
         //write data to database
+			gameData.gameData = board
+			gameData.users.push(user)
         //push data
         fs.writeFile(
             __dirname + '/gameData.json',
@@ -59,16 +57,13 @@ app.post('/game', function(req, res, next) {
             }
         )
     } else {
-        res.status(400).send("Request needs user and board data")
+        res.status(400).send("Request needs user and move data")
     }
     next()
 })
 
-//render 404 layout
 app.get('*', function (req, res, next) {
-    res.status(404).render('404', {
-        path: req.url
-    })
+    res.status(404).sendFile(__dirname, + '404.html') //change to render after handlebars is set up
 })
 
 app.listen(port, function () {

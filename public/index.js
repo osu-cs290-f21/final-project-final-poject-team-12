@@ -1,173 +1,62 @@
-const WINNING_COMBINATIONS = [
-	[0, 1, 2],
-	[3, 4, 5],
-	[6, 7, 8],
-	[0, 3, 6],
-	[1, 4, 7],
-	[2, 5, 8],
-	[0, 4, 8],
-	[2, 4, 6]
-]
-const cellElements = document.querySelectorAll('#board td')
-const boardElement = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const winningMessageTextElement = document.getElementById('winningMessageText')
-const submitButton = document.getElementById("move-submit")
-let isPlayer_O_Turn = false
-var endGameFlag = false
-var clickedCell = null
-
-//x icon class
-//var x = "<i class= 'fa fa-times'></i>"
-var x = 'x'
-
-//o icon class
-//var o = "<i class='far fa-circle'></i>"
-var o = 'o'
-
-var currClass = isPlayer_O_Turn ? x : o //currClass = x or o
-
-startGame()
-
-function startGame() {
-	isPlayer_O_Turn = false
-	cellElements.forEach(cell => { //for each ceell element
-		cell.classList.remove(x)
-		cell.classList.remove(o)
-		cell.removeEventListener('click', handleCellClick)
-		cell.addEventListener('click', handleCellClick)
-	})
-	setBoardHoverClass()
-	winningMessageElement.classList.remove('show')
+function spaceClick(event){
+	event.currentTarget.textContent = "O"
 }
 
-function swapTurns() {
-	isPlayer_O_Turn = !isPlayer_O_Turn
-}
-
-function setBoardHoverClass() {
-	boardElement.classList.remove(x)
-	boardElement.classList.remove(o)
-	if (isPlayer_O_Turn) {
-		boardElement.classList.add(o)
-	} else {
-		boardElement.classList.add(x)
-	}
-}
-
-function isDraw() {
-	var flag = true;
-	cellElements.forEach(cell => {
-		if (!cell.classList.contains(x) && !cell.classList.contains(o))
-			flag = false
-	})
-	return flag
-}
-
-function endGame(draw) {
-	if (draw) {
-		winningMessageTextElement.innerText = 'Draw!'
-	} else {
-		winningMessageTextElement.innerText = '${ isPlayer_O_Turn ? "O" : "X" } Wins!'
-	}
-	endGameFlag = true
-	winningMessageElement.classList.add('show')
-}
-
-function checkWin(currentClass) {
-	var winFlag = false
-	var JSsucksFlag = false
-	WINNING_COMBINATIONS.forEach(combo => {
-		winFlag = true
-		combo.forEach(index => {
-			if (!cellElements[parseInt(index)].classList.contains(currentClass)) {
-
-				winFlag = false
-			}
-		})
-		console.log(winFlag)
-		if (winFlag == true) {
-			JSsucksFlag = true
-		}
-	})
-	return JSsucksFlag
-}
-
-function handleCellClick(e) {
-	var currClass = isPlayer_O_Turn ? x : o //currClass = x or o
-
-	if (e.target.classList.contains(x) || e.target.classList.contains(o)) {
-		//the cell is already taken, don't do anything
-	} else { //cell is not taken, mark the cell and set clickedCell
-		if (clickedCell != null) {
-			clickedCell.classList.remove(currClass)
-		} //remove currClass from our old clicked cell
-
-		clickedCell = e.target
-		clickedCell.classList.add(currClass)
-	}
-}
-
-function handleSubmitClick(e) {
-	//get username
-	//get clicked cell
-	//send data to server
-	clickedCell
-	if (checkWin(currClass)) {
-		endGame(false)
-	} else if (isDraw()) {
-		endGame(true)
-	} else {
-		swapTurns()
-		setBoardHoverClass()
-	}
-}
-
-// Erik Worked on This
-
-// Change clicked space to current turn !!!NEEDS CURRENT TURN
 function submitClick() {
 	var userName = document.getElementById('username-input').value.trim()
-	if(!userName || clickedCell == null) {
-			alert("You must enter your Username and make a move");
+	
+	var tttBoard = document.getElementsByClassName('space')
+	
+	var team = 'x'// IMPLAMENT ME!!!!
+
+var tttArr = []
+	for(var i = 0; i < tttBoard.length; i++) {
+		tttArr[i] = tttBoard[i].textContent
+	}
+
+	
+	if(!userName) {
+			alert("You must enter your Username");
 		} else {
-		var req = new XMLHttpRequest()
-    	var url = '/game' //changed from nextTurn
+			
+			var req = new XMLHttpRequest()
+    	var url = '/nextTurn'
     	req.open('POST', url)
 
-        
-        if (isPlayer_O_Turn) {
-            var userTeam = o
-        } else {
-            var userTeam = x
-        }
-
-		var context = {
-            board: boardElement,
-            users: {
-                team: userTeam,
-                userName: userName
-            }
-			//user: userName,
-			//board: boardElement,
-			//endGame: endGameFlag
+    	var tttObj = {
+				gameData: tttArr,
+      	user: {
+					userName: userName,
+					team: team
+				},
     	}
 			
-    	var reqBody = JSON.stringify(context)
-        console.log("reqBody", reqBody)
-        console.log("Context", context)
+    	var reqBody = JSON.stringify(tttObj)
 
-    	req.addEventListener('load', function (event) {
-      	if (event.target.status === 200) {
-        	// insert username into DOM !!!NEEDS CURRENT TURN
-      	} else {
-        	alert("Error entering Username: ")
-      	}
-    	})
+//    	req.addEventListener('load', function (event) {
+//      	if (event.target.status === 200) {
+//        	// insert username into DOM !!!NEEDS CURRENT TURN
+//      	} else {
+//        	alert("Error entering Username: ")
+//      	}
+//    	})
 
     req.setRequestHeader('Content-Type', 'application/json')
     req.send(reqBody)
 		}
 }
 
-submitButton.addEventListener('click', submitClick)
+var tttBoard = document.getElementsByClassName('space')
+
+var tttArr = []
+	for(var i = 0; i < tttBoard.length; i++) {
+		tttArr[i] = tttBoard[i].textContent
+	}
+
+var space = document.getElementsByClassName('space')
+for(var i = 0; i< space.length; i++) {
+	space[i].addEventListener('click', spaceClick)
+}
+
+var submit = document.getElementById("move-submit")
+submit.addEventListener('click', submitClick)
