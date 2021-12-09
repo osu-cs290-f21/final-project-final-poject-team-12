@@ -117,8 +117,8 @@ function submitClick() {
 		tttArr[i] = tttBoard[i].textContent
 	}
 
-	if(!userName) {
-			alert("You must enter your Username");
+	if(!userName || !moveFlag) {
+			alert("You must enter your Username and make a move");
 		} else {
 			
 		var req = new XMLHttpRequest()
