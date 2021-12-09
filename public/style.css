@@ -115,8 +115,18 @@ h2 {
     background-color: white;
 }
 
+.fa-times{
+    size: 8em;
+    color: black;
+}
+
 .space.o {
     background-color: black;
+}
+
+.fa-circle {
+    size: 8em;
+    color: white;
 }
 
 #footer-container {

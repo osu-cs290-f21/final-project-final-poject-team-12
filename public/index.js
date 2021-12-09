@@ -8,26 +8,34 @@ const WINNING_COMBINATIONS = [
 	[0, 4, 8],
 	[2, 4, 6]
 ]
-const cellElements = document.querySelectorAll('#board td')
-const boardElement = document.getElementById('board')
-const winningMessageElement = document.getElementById('winningMessage')
-const winningMessageTextElement = document.getElementById('winningMessageText')
-const submitButton = document.getElementById("move-submit")
+var cellElements = document.querySelectorAll('#board td')
+console.log("CellElements", cellElements)
+var boardElement = document.getElementById('board')
+console.log("boardElement", boardElement)
+var winningMessageElement = document.getElementById('winningMessage')
+var winningMessageTextElement = document.getElementById('winningMessageText')
+var submitButton = document.getElementById("move-submit")
+var userNameInput = document.getElementById('username-input')
+
 let isPlayer_O_Turn = false
 var endGameFlag = false
 var clickedCell = null
+var userName = ""
 
 //x icon class
-//var x = "<i class= 'fa fa-times'></i>"
+var faX = '<i class= "fa fa-times"></i>'
 var x = 'x'
 
 //o icon class
-//var o = "<i class='far fa-circle'></i>"
+var faO = '<i class= "far fa-circle"></i>'
 var o = 'o'
 
 var currClass = isPlayer_O_Turn ? x : o //currClass = x or o
 
 startGame()
+
+userNameInput.addEventListener(('change', handleUsernameEntered))
+
 
 function startGame() {
 	isPlayer_O_Turn = false
@@ -95,6 +103,8 @@ function checkWin(currentClass) {
 
 function handleCellClick(e) {
 	var currClass = isPlayer_O_Turn ? x : o //currClass = x or o
+	console.log("currClass", currClass)
+	console.log("clickedCell", clickedCell)
 
 	if (e.target.classList.contains(x) || e.target.classList.contains(o)) {
 		//the cell is already taken, don't do anything
@@ -105,7 +115,18 @@ function handleCellClick(e) {
 
 		clickedCell = e.target
 		clickedCell.classList.add(currClass)
+		if (clickedCell.classList.contains(x)) {
+			clickedCell.innerHTML = faX
+		}
+		if(clickedCell.classList.contains(o)) {
+			clickedCell.innerHTML = faO
+		}
 	}
+}
+
+function handleUsernameEntered(event) {
+	// grabs the userName text and inserts it into userName variable
+	userName = event.currentTarget.value;
 }
 
 function handleSubmitClick(e) {
@@ -128,6 +149,7 @@ function handleSubmitClick(e) {
 // Change clicked space to current turn !!!NEEDS CURRENT TURN
 function submitClick() {
 	var userName = document.getElementById('username-input').value.trim()
+	console.log("userName", userName)
 	if(!userName || clickedCell == null) {
 			alert("You must enter your Username and make a move");
 		} else {
@@ -141,6 +163,7 @@ function submitClick() {
         } else {
             var userTeam = x
         }
+		console.log("userTeam", userTeam)
 
 		var context = {
             board: boardElement,
@@ -153,13 +176,14 @@ function submitClick() {
 			//endGame: endGameFlag
     	}
 			
-    	var reqBody = JSON.stringify(context)
+    	var reqBody = JSON.stringify(context, null, 2)
         console.log("reqBody", reqBody)
         console.log("Context", context)
 
     	req.addEventListener('load', function (event) {
       	if (event.target.status === 200) {
         	// insert username into DOM !!!NEEDS CURRENT TURN
+			boardElement = context.board //try to update board dom elem
       	} else {
         	alert("Error entering Username: ")
       	}
